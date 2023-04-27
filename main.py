@@ -17,7 +17,7 @@ def aviso():
 			os.system("sudo apt install python3-pip")
 			os.system("sudo apt install xclip")
 			os.system("pip install clipboard")
-	elif "fedora" in str(sistema.version).lower():
+	elif "fedora" in str(sistema.node).lower():
 		print			 ('|\tPresione s para instalarlos automaticamente en fedora    \t|')
 		respuesta = input('|\tPresione enter para continuar sin instalarlos            \t|')
 		if respuesta.lower() == 's':

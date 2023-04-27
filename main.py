@@ -1,7 +1,8 @@
 #Funcines
 def aviso():
 	clear()
-	sistema = os.uname()
+	sistema = platform.uname()
+	#print(sistema)
 	#Aviso sobre necesidad de paquetes
 	print('|\t*********************************************************\t|')
 	print('|\tEste software necesita los siguientes paquetes:          \t|')
@@ -15,20 +16,20 @@ def aviso():
 		if respuesta.lower() == 's':
 			os.system("sudo apt install python3-pip")
 			os.system("sudo apt install xclip")
-			os.system("pip install xerox")
+			os.system("pip install clipboard")
 	elif "fedora" in str(sistema.version).lower():
 		print			 ('|\tPresione s para instalarlos automaticamente en fedora    \t|')
 		respuesta = input('|\tPresione enter para continuar sin instalarlos            \t|')
 		if respuesta.lower() == 's':
 			os.system("sudo dnf install python3-pip")
 			os.system("sudo dnf install xclip")
-			os.system("pip install xerox")
-	elif "windows" in str(sistema.version).lower():
+			os.system("pip install clipboard")
+			
+	elif "windows" in str(sistema.system).lower():
 		print			 ('|\tPresione s para instalarlos automaticamente en Windows   \t|')
 		respuesta = input('|\tPresione enter para continuar sin instalarlos            \t|')
 		if respuesta.lower() == 's':
-			os.system("curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py")
-			os.system("python3 get-pip.py")
+			os.system("pip install clipboard")
 	else:
 		print('|\tAsegurese de instalarlos antes de ejecutar el programa   \t|')
 		print('|\tPresione s para salir                                    \t|')
@@ -264,7 +265,7 @@ def encriptar(user):
 			cifrado=cifrado+nc
 		else:
 			cifrado=cifrado+c				#Si no esta coloca el mismo simbolo
-	xerox.copy(cifrado)
+	clipboard.copy(cifrado)
 	resultado = cifrado
 	if len(texto) <= 57:
 		texto	= texto.ljust(57) + '\t|'
@@ -305,8 +306,9 @@ texto=''
 
 #Main
 import os
+import platform
 aviso()
-import xerox
+import clipboard
 menu()
 clear()
 exit()

@@ -60,7 +60,7 @@ def help():
 	print('|\t                                                         \t|')
 	print('|\tAl momento de ingresar una llave, si no ingresa ningun   \t|')
 	print('|\tvalor, se usará la llave por defecto 3 o la ingresada    \t|')
-	print('|\tanteriormente. Esta debe ser un numero entre 0 y 27.     \t|')
+	print('|\tanteriormente. Esta debe ser un numero entre 0 y 26.     \t|')
 	print('|\t                                                         \t|')
 	print('|\tPresione Enter para continuar                            \t|')
 	input('|\t*********************************************************\t|')
@@ -76,6 +76,40 @@ def inicio():
 	print('|\t                                                         \t|')
 	print('|\t*************** ¿Que tarea desea realizar? **************\t|')
 
+def explicacion():
+	global texto
+	print('|\t********************** Explicación **********************\t|')
+	print('|\t                                                         \t|')
+	print('|\tEn criptografía, el cifrado César, también conocido como \t|')
+	print('|\tcifrado por desplazamiento, código de César o desplazami-\t|')
+	print('|\tento de César, es una de las técnicas de cifrado más     \t|')
+	print('|\tsimples y más usadas. Es un tipo de cifrado por sustitu- \t|')
+	print('|\tción en el que una letra en el texto original es reempla-\t|')
+	print('|\tzada por otra letra que se encuentra un número fijo de   \t|')
+	print('|\tposiciones más adelante en el alfabeto.                  \t|')
+	print('|\tEn este caso las pociciones estan definidas por una llave\t|')
+	print('|\tAdemas se tienen mas "Alfabetos" listados a continuacion:\t|')
+	print('|\t                                                         \t|')
+	print('|\tPresione Enter para continuar                            \t|')
+	input('|\t*********************************************************\t|')
+	clear()
+	print_alfabeto()
+	print('|\tPresione Enter para continuar                            \t|')
+	input('|\t*********************************************************\t|')
+	clear()
+	print('|\tEjemplo:                                                 \t|')
+	print('|\tSe encriptara y desencriptara la siguiente cadena:       \t|')
+	print(f'|\t{texto_ejemplo.ljust(57)}\t|')
+	texto = texto_ejemplo
+	print('|\t********************* Encriptacion **********************\t|')
+	print('|\t                                                         \t|')
+	texto = encriptar(False)
+	print('|\t******************** Desencriptacion ********************\t|')
+	print('|\t                                                         \t|')
+	texto = desencriptar(False)
+	print('|\tPresione Enter para continuar                            \t|')
+	input('|\t*********************************************************\t|')
+
 def menu():
 	while True:
 		inicio()
@@ -83,12 +117,14 @@ def menu():
 		if	(tarea=='e' or tarea == 'E'):
 			clear()
 			llave('|\t********************* Encriptacion **********************\t|')
-			encriptar()
+			pedirTexto()
+			encriptar(True)
 
 		elif(tarea=='d' or tarea == 'D'):
 			clear()
 			llave('|\t******************** Desencriptacion ********************\t|')
-			desencriptar()
+			pedirTexto()
+			desencriptar(True)
 
 		elif(tarea=='o' or tarea == 'O'):
 			clear()
@@ -96,20 +132,8 @@ def menu():
 
 		elif(tarea=='x' or tarea == 'X'):
 			clear()
-			print('|\t********************** Explicación **********************\t|')
-			print('|\t                                                         \t|')
-			print('|\tEn criptografía, el cifrado César, también conocido como \t|')
-			print('|\tcifrado por desplazamiento, código de César o desplazami-\t|')
-			print('|\tento de César, es una de las técnicas de cifrado más     \t|')
-			print('|\tsimples y más usadas. Es un tipo de cifrado por sustitu- \t|')
-			print('|\tción en el que una letra en el texto original es reempla-\t|')
-			print('|\tzada por otra letra que se encuentra un número fijo de   \t|')
-			print('|\tposiciones más adelante en el alfabeto.                  \t|')
-			print('|\tEn este caso las pociciones estan definidas por una llave\t|')
-			print('|\tAdemas se tienen mas "Alfabetos" listados a continuacion:\t|')
-			print_alfabeto()
-			print('|\tPresione Enter para continuar                            \t|')
-			input('|\t*********************************************************\t|')
+			explicacion()
+			
 		elif(tarea=='s' or tarea == 'S'):
 			input('|\t********************** ¡Adios! :D ***********************\t|')
 			break
@@ -123,12 +147,12 @@ def llave(head):
 		print(head)
 		nkey = input('|\tIngrese la llave a usar:                                 \t|: ')
 		if nkey == '':
-			print(f'|\tSe usará la llave por defecto {key}                        \t\t|')
+			print(f'|\tSe usará la llave por defecto {key}                      \t\t|')
 			return
 		try:
 			nkey = int(nkey)
-			if nkey > 27 or nkey < 0:
-				input('|\tNumero fuera de rango, debe estar entre 0 y 27           \t|')
+			if nkey > 26 or nkey < 0:
+				input('|\tNumero fuera de rango, debe estar entre 0 y 26           \t|')
 				clear()
 			else:	
 				key = nkey
@@ -137,6 +161,7 @@ def llave(head):
 		except ValueError:
 			input('|\t¡No es un numero entero! Intenta nuevamente               \t|')
 			clear()
+	return
 
 def print_alfabeto():
 	global alfabeto
@@ -175,7 +200,7 @@ def print_alfabeto():
 			car  = car  + '░' + '|'
 			ncar = ncar + '░' + '|'
 
-	print('|\t*********************** Alfabeto ************************\t|')
+	print('|\t*********************** Alfabetos ***********************\t|')
 	print(f'|\tLlave actual: {key}                                     \t\t|')
 	print('|\t ┌-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┬-┐ \t|')
 	print('|\t |1|2|3|4|5|6|7|8|9|1|1|1|1|1|1|1|1|1|1|2|2|2|2|2|2|2|2| \t|')
@@ -199,11 +224,15 @@ def print_alfabeto():
 	print('|\t └-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┴-┘ \t|')
 	return
 
-def encriptar():
-	global alfabeto
+def pedirTexto():
 	#Ingreso de texto
+	global texto
 	print('|\tIngrese el texto a procesar:                            \t|')
 	texto = input('|\t')
+
+def encriptar(user):
+	global alfabeto
+	global texto
 	cifrado = ''
 	#Recorre cada caracter en la cadena suministrada
 	for c in texto:
@@ -220,6 +249,7 @@ def encriptar():
 		elif c in tildes: 					#Cifra el tilde con el mismo metodo
 			indice = tildes.index(c)
 			nc = tildes[(indice+key)%10]
+			if mayus : nc = nc.capitalize() #Vuelve a colocarlo en mayuscula
 			cifrado=cifrado+nc
 		elif c in digitos:					#Cifra el numero con el mismo metodo
 			indice = digitos.index(c)
@@ -232,28 +262,29 @@ def encriptar():
 		else:
 			cifrado=cifrado+c				#Si no esta coloca el mismo simbolo
 	xerox.copy(cifrado)
+	resultado = cifrado
 	if len(texto) <= 57:
 		texto	= texto.ljust(57) + '\t|'
 		cifrado = cifrado.ljust(57) + '\t|'
 
-	print_alfabeto()
-	print('|\t*********************** Resultado ***********************\t|')
+	if user : print_alfabeto()
+	if user : print('|\t*********************** Resultado ***********************\t|')
 	print('|\tTexto original:                                          \t|')
 	print(f'|\t{texto}')
 	print('|\tTexto procesado:                                         \t|')
 	print(f'|\t{cifrado}')
 	print('|\t                                                         \t|')
-	print('|\tTexto procesado copiado en el portapapeles.              \t|')
-	input('|\tPresione Enter para continuar                            \t|')
-	return
+	if user : print('|\tTexto procesado copiado en el portapapeles.              \t|')
+	if user : input('|\tPresione Enter para continuar                            \t|')
+	return resultado
 
-def desencriptar():
+def desencriptar(user):
 	global key
 	#Al ser el mismo proceso inverso, solo invierto el valor de la key
 	key = key * -1
-	encriptar()
+	res = encriptar(user)
 	key = key * -1
-	return
+	return res
 
 #Variables
 alfabeto	= [ 'a','b','c','d','e','f','g','h','i',
@@ -267,6 +298,7 @@ caracteres	= ['|','_','+','-','*','/','\\','\'','"','=',
 
 key = 3
 texto_ejemplo = 'Ésto, es un (1) texto de ejemplo: # HólÄ münd0.'
+texto=''
 
 #Main
 import os

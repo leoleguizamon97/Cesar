@@ -33,7 +33,6 @@ def aviso():
 		print('|\tAsegurese de instalarlos antes de ejecutar el programa   \t|')
 		print('|\tPresione s para salir                                    \t|')
 		respuesta = input('|\tPresione enter para continuar                            \t|')
-		
 
 def clear():
     if os.name == "nt":
@@ -97,9 +96,22 @@ def menu():
 
 		elif(tarea=='x' or tarea == 'X'):
 			clear()
+			print('|\t********************** Explicación **********************\t|')
+			print('|\t                                                         \t|')
+			print('|\tEn criptografía, el cifrado César, también conocido como \t|')
+			print('|\tcifrado por desplazamiento, código de César o desplazami-\t|')
+			print('|\tento de César, es una de las técnicas de cifrado más     \t|')
+			print('|\tsimples y más usadas. Es un tipo de cifrado por sustitu- \t|')
+			print('|\tción en el que una letra en el texto original es reempla-\t|')
+			print('|\tzada por otra letra que se encuentra un número fijo de   \t|')
+			print('|\tposiciones más adelante en el alfabeto.                  \t|')
+			print('|\tEn este caso las pociciones estan definidas por una llave\t|')
+			print('|\tAdemas se tienen mas "Alfabetos" listados a continuacion:\t|')
 			print_alfabeto()
-
+			print('|\tPresione Enter para continuar                            \t|')
+			input('|\t*********************************************************\t|')
 		elif(tarea=='s' or tarea == 'S'):
+			input('|\t********************** ¡Adios! :D ***********************\t|')
 			break
 		else:
 			input('|\tOpcion no valida. Intente nuevamente                     \t|')
@@ -254,7 +266,7 @@ caracteres	= ['|','_','+','-','*','/','\\','\'','"','=',
 			   '#','$','&']
 
 key = 3
-texto_ejemplo = 'Esto es un texto de ejemplo'
+texto_ejemplo = 'Ésto, es un (1) texto de ejemplo: # HólÄ münd0.'
 
 #Main
 import os

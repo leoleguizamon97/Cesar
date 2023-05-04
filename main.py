@@ -6,7 +6,7 @@ def aviso():
 	#Aviso sobre necesidad de paquetes
 	print('|\t*********************************************************\t|')
 	print('|\tEste software necesita los siguientes paquetes:          \t|')
-	print('|\t (pip) (xerox) (xclip en linux)                          \t|')
+	print('|\t (pip) (clipboard) (xclip en linux)                          \t|')
 	print('|\t                                                         \t|')
 	print('|\t                                                         \t|')
 	#Identifica el os
